@@ -35,6 +35,7 @@ public class Controller {
 
     private static HashMap<Integer, Camper> camperMap = new HashMap();
     private static Gson gson = new Gson();
+    public static final String PATH_NAME = "campers.json";
 
     public static void main(String[] args) {
 
@@ -59,13 +60,13 @@ public class Controller {
                     System.out.println(MESSAGE_EXIT);
                     break; //Break out of the loop as we're finished.
                 case 1:
-                    processMenuOption1();
+                    add();
                     break;
                 case 2:
-                    processMenuOption2();
+                    edit();
                     break;
                 case 3:
-                    processMenuOption3();
+                    viewAll();
                     break;
                 default:
                     System.out.println(MESSAGE_ERROR);
@@ -80,15 +81,16 @@ public class Controller {
      * @author
      * @since
      */
-    public static void processMenuOption1() {
+    public static void add() {
         Camper newCamper = new Camper();
         IO.println("--Add Camper--");
         newCamper.getInformation();
 
-        //TODO what if the registration id already exists.  Give the user a warnign and ask if they want to overwrite
+        //TODO what if the registration id already exists.  Give the user a warning and ask if they want to overwrite
         //the row.
+        //read file nad see if the new camper is already there, and if so check with user to see if should overwrite
         camperMap.put(newCamper.getRegistrationId(), newCamper);
-        write();
+        writeAll();
     }
 
     /**
@@ -97,13 +99,14 @@ public class Controller {
      * @author
      * @since
      */
-    public static void processMenuOption2() {
+    public static void edit() {
         System.out.println("Processing option 2");
         int regID = CisUtility.getInputInt("Reg ID: ");
         Camper editingCamper = camperMap.get(regID);
         editingCamper.edit();
         //TODO What if the regID not found?
-        write(); //save to file
+        //Handle this situation.
+        writeAll(); //save to file
     }
 
     /**
@@ -112,14 +115,16 @@ public class Controller {
      * @author
      * @since
      */
-    public static void processMenuOption3() {
-        read();
-        //TODO Need to show all the campers.
+    public static void viewAll() {
+        readAll();
+        //TODO Need to show all the campers.  Note want to show the latest from the file, not just
+        //what is currently in the map.
     }
 
-    public static void write() {
+
+    public static void writeAll() {
         try {
-            FileWriter writer = new FileWriter("campers.json", false);
+            FileWriter writer = new FileWriter(PATH_NAME, false);
             for (Camper current : camperMap.values()) {
                 writer.append(gson.toJson(current));
                 writer.append(System.lineSeparator());
@@ -131,9 +136,9 @@ public class Controller {
         }
     }
 
-    public static void read() {
+    public static void readAll() {
         try {
-            FileReader reader = new FileReader("campers.json");
+            FileReader reader = new FileReader(PATH_NAME);
             List<String> lines = reader.readAllLines();
             for(int i = 0; i < lines.size(); i++) {
                 Camper camperFromJson = gson.fromJson(lines.get(i), Camper.class);
@@ -147,12 +152,12 @@ public class Controller {
 
     public static void initialize() {
 
-        Path path = Paths.get("campers.json");
+        Path path = Paths.get(PATH_NAME);
 
         // Check if the file exists
         if (Files.exists(path)) {
             System.out.println("Campers exist.");
-            read();
+            readAll();
         } else {
 
 
@@ -167,7 +172,7 @@ public class Controller {
             camperMap.put(camper4.getRegistrationId(), camper4);
             camperMap.put(camper5.getRegistrationId(), camper5);
 
-            write();
+            writeAll();
         }
 
     }
