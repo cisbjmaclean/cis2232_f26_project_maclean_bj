@@ -35,7 +35,10 @@ public class Controller {
 
     private static HashMap<Integer, Camper> camperMap = new HashMap();
     private static Gson gson = new Gson();
-    public static final String PATH_NAME = "campers.json";
+
+    //TODO if the cis2232 folder does not exist, then have your program create it.
+    //TODO filename to be changed from campers based on assignment requirements.
+    public static final String PATH_NAME = "c:\\cis2232\\campers.json";
 
     public static void main(String[] args) {
 
