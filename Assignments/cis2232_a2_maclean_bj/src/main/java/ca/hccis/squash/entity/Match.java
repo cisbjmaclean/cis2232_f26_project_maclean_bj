@@ -63,14 +63,6 @@ public class Match {
         this.winnerName = winnerName;
     }
 
-    /**
-     * Determine the winner based on the scores of the games.
-     * @since 20260921
-     * @author BJM
-     */
-    public void determineWinner(){
-
-    }
 
     public void getInformation() {
 

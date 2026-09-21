@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35354910-14d2-4405-9a4d-f700126ab633" name="Changes" comment="" />
+    <list default="true" id="35354910-14d2-4405-9a4d-f700126ab633" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ca/hccis/squash/entity/Match.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ca/hccis/squash/entity/Match.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ca/hccis/squash/entity/MatchTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ca/hccis/squash/entity/MatchTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,8 +22,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -38,7 +42,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Controller.executor": "Run",
+    "JUnit.MatchTest.executor": "Run",
     "JUnit.MatchTest.testDetermineWinner11_0s.executor": "Run",
+    "JUnit.MatchTest.testDetermineWinnerPlayer1_11_0s.executor": "Run",
+    "JUnit.MatchTest.testDetermineWinnerPlayer1_12_10s.executor": "Run",
+    "JUnit.MatchTest.testDetermineWinnerPlayer1_13_11s.executor": "Run",
+    "JUnit.MatchTest.testDetermineWinnerPlayer2_13_11s.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -61,8 +70,8 @@
       <recent name="ca.hccis.squash.entity" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="MatchTest.testDetermineWinner11_0s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.MatchTest">
+    <configuration name="MatchTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="cis2232_files_summerside" />
       <extension name="coverage">
         <pattern>
@@ -72,7 +81,70 @@
       </extension>
       <option name="PACKAGE_NAME" value="ca.hccis.squash.entity" />
       <option name="MAIN_CLASS_NAME" value="ca.hccis.squash.entity.MatchTest" />
-      <option name="METHOD_NAME" value="testDetermineWinner11_0s" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatchTest.testDetermineWinnerPlayer1_11_0s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cis2232_files_summerside" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.hccis.squash.entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.hccis.squash.entity" />
+      <option name="MAIN_CLASS_NAME" value="ca.hccis.squash.entity.MatchTest" />
+      <option name="METHOD_NAME" value="testDetermineWinnerPlayer1_11_0s" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatchTest.testDetermineWinnerPlayer1_12_10s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cis2232_files_summerside" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.hccis.squash.entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.hccis.squash.entity" />
+      <option name="MAIN_CLASS_NAME" value="ca.hccis.squash.entity.MatchTest" />
+      <option name="METHOD_NAME" value="testDetermineWinnerPlayer1_12_10s" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatchTest.testDetermineWinnerPlayer1_13_11s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cis2232_files_summerside" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.hccis.squash.entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.hccis.squash.entity" />
+      <option name="MAIN_CLASS_NAME" value="ca.hccis.squash.entity.MatchTest" />
+      <option name="METHOD_NAME" value="testDetermineWinnerPlayer1_13_11s" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MatchTest.testDetermineWinnerPlayer2_13_11s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="cis2232_files_summerside" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ca.hccis.squash.entity.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ca.hccis.squash.entity" />
+      <option name="MAIN_CLASS_NAME" value="ca.hccis.squash.entity.MatchTest" />
+      <option name="METHOD_NAME" value="testDetermineWinnerPlayer2_13_11s" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -80,7 +152,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MatchTest.testDetermineWinner11_0s" />
+        <item itemvalue="JUnit.MatchTest" />
+        <item itemvalue="JUnit.MatchTest.testDetermineWinnerPlayer2_13_11s" />
+        <item itemvalue="JUnit.MatchTest.testDetermineWinnerPlayer1_13_11s" />
+        <item itemvalue="JUnit.MatchTest.testDetermineWinnerPlayer1_12_10s" />
+        <item itemvalue="JUnit.MatchTest.testDetermineWinnerPlayer1_11_0s" />
       </list>
     </recent_temporary>
   </component>
@@ -99,11 +175,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1790013113825</updated>
-      <workItem from="1790013117142" duration="1272000" />
+      <workItem from="1790013117142" duration="3278000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ca/hccis/squash/entity/MatchTest.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
