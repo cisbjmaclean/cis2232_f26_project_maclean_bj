@@ -1,12 +1,11 @@
 package ca.hccis.squash.entity;
 
 import ca.hccis.squash.bo.MatchBO;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MatchBOITest {
+class MatchBOTest {
 
     /**
      * Test 1 created by BJ following TDD
