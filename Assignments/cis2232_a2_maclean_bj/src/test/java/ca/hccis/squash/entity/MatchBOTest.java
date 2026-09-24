@@ -124,6 +124,7 @@ class MatchBOTest {
                 {11, 7}, {6, 11}, {11, 9}, {8, 11}, {0, 0}
         });
 
+        //TODO Note that my code only uses assertEquals and the A2 requirements ask to have > 1 type of assert methods used.
         assertEquals(0, MatchBO.determineWinner(match));
     }
 
