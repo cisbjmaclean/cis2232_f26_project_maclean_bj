@@ -1,6 +1,7 @@
-package ca.hccis.squash.entity;
+package ca.hccis.squash.bo;
 
 import ca.hccis.squash.bo.MatchBO;
+import ca.hccis.squash.entity.Match;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -125,6 +126,63 @@ class MatchBOTest {
         });
 
         //TODO Note that my code only uses assertEquals and the A2 requirements ask to have > 1 type of assert methods used.
+        assertEquals(0, MatchBO.determineWinner(match));
+    }
+
+    @Test
+    public void testPlayer1Wins() {
+
+        Match match = new Match();
+
+        match.setPlayer1Game1Score(11);
+        match.setPlayer2Game1Score(5);
+
+        match.setPlayer1Game2Score(11);
+        match.setPlayer2Game2Score(7);
+
+        match.setPlayer1Game3Score(11);
+        match.setPlayer2Game3Score(9);
+
+        assertEquals(1, MatchBO.determineWinner(match));
+    }
+
+    @Test
+    public void testPlayer2Wins() {
+
+        Match match = new Match();
+
+        match.setPlayer1Game1Score(5);
+        match.setPlayer2Game1Score(11);
+
+        match.setPlayer1Game2Score(7);
+        match.setPlayer2Game2Score(11);
+
+        match.setPlayer1Game3Score(9);
+        match.setPlayer2Game3Score(11);
+
+        assertEquals(2, MatchBO.determineWinner(match));
+    }
+
+    @Test
+    public void testNoValidWinner() {
+
+        Match match = new Match();
+
+        match.setPlayer1Game1Score(11);
+        match.setPlayer2Game1Score(5);
+
+        match.setPlayer1Game2Score(8);
+        match.setPlayer2Game2Score(11);
+
+        match.setPlayer1Game3Score(10);
+        match.setPlayer2Game3Score(10);
+
+        match.setPlayer1Game4Score(9);
+        match.setPlayer2Game4Score(9);
+
+        match.setPlayer1Game5Score(10);
+        match.setPlayer2Game5Score(8);
+
         assertEquals(0, MatchBO.determineWinner(match));
     }
 
