@@ -43,4 +43,8 @@ The calculation / processing needed when the player enters a new record will be 
 
 ## Report Details ##
 
-To be determined in future sprint
+### Player name report ###
+
+Enter a player name and the report will return any rows that have that name 'like' the player 1 name or the player 2 name.
+
+
