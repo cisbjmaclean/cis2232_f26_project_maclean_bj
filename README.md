@@ -45,6 +45,8 @@ The calculation / processing needed when the player enters a new record will be 
 
 ### Player name report ###
 
-Enter a player name and the report will return any rows that have that name 'like' the player 1 name or the player 2 name.
+Enter a player name and the report will return any rows that have that name 'like' the player 1 name or the player 2 name. On the report results page, only show the player, the opponent and the game scores.
 
+### Player matches report ###
 
+Enter a player name and a date range and show the matches where that player played as either player 1 or player 2.  Give a drop down of all players as part of the user input.
