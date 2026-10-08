@@ -47,4 +47,6 @@ The calculation / processing needed when the player enters a new record will be 
 
 Enter a player name and the report will return any rows that have that name 'like' the player 1 name or the player 2 name.
 
+### Player matches report ###
 
+Enter a player name and a date range and show the matches where that player played as either player 1 or player 2.  Give a drop down of all players as part of the user input.
