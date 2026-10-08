@@ -13,7 +13,7 @@ use cis2232_squash_scorer;
 -- table with 7-9 fields.
 -- ------------------------------------------------------------------------------
 
-CREATE TABLE squash_match (
+CREATE TABLE SquashMatch (
                               id                  INT             NOT NULL AUTO_INCREMENT,
                               matchDate           VARCHAR(10)    NOT NULL,
                               createdDateTime     VARCHAR(100)   NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE squash_match (
                               PRIMARY KEY (id)
 );
 
-INSERT INTO squash_match
+INSERT INTO SquashMatch
 (matchDate, createdDateTime, player1Name, player2Name,
  player1Game1Score, player2Game1Score,
  player1Game2Score, player2Game2Score,
@@ -112,3 +112,28 @@ VALUES
 #     (2, 2, 'Backhand Drives', 'BH Drives', 'Backhand DrivesFR', 'BH DrivesFR', '2024-09-13 18:44:37', 'admin', '2024-09-13 18:44:37', 'admin');
 #
 
+# Adding old table back in temporarily - this will be removed once
+# we get to sprint 3.
+
+
+CREATE TABLE SkillsAssessmentSquashTechnical
+(
+    id                int(5),
+    assessmentDate    varchar(10) NOT NULL COMMENT 'yyyy-MM-dd',
+    createdDateTime   varchar(20) NOT NULL COMMENT 'yyyy-MM-dd hh:mm:ss',
+    athleteName       varchar(50) NOT NULL COMMENT 'Athletes name',
+    assessorName      varchar(50) NOT NULL COMMENT 'Athletes name',
+    forehandDrives    int(5) COMMENT 'Number of forehand drives',
+    backhandDrives    int(5) COMMENT 'Number of backhand drives',
+    forehandVolleyMax int(5) COMMENT 'Max number of forehand volleys',
+    forehandVolleySum int(5) COMMENT 'Sum of forehand volleys',
+    backhandVolleyMax int(5) COMMENT 'Max number of backhand volleys',
+    backhandVolleySum int(5) COMMENT 'Sum of backhand volleys',
+    technicalScore    int(5) COMMENT 'Score calculated at submission'
+) COMMENT 'This table holds technical skills assessment details';
+
+ALTER TABLE SkillsAssessmentSquashTechnical
+    ADD PRIMARY KEY (id);
+ALTER TABLE SkillsAssessmentSquashTechnical
+    MODIFY id int(4) NOT NULL AUTO_INCREMENT COMMENT 'This is the primary key',
+    AUTO_INCREMENT = 1;
