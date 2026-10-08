@@ -1,6 +1,6 @@
 package ca.hccis.squash.entity;
 
-import ca.hccis.squash.SquashMatch;
+import ca.hccis.squash.jpa.entity.SquashMatch;
 import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;
 
 import java.util.ArrayList;

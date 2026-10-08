@@ -258,12 +258,18 @@ body,p,strong,th{
     }
 }
 /*white background box.*/
-.wbb, .ddl{
-    padding:0px 8px 0px 8px !important;
-    background-color:#ccc !important;
-    border:8px #ccc solid !important;
-    border-radius:12px !important;
-    white-space:nowrap !important
+.wbb th,
+.wbb td {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.wbb, .ddl {
+    padding: 0px 8px 0px 8px !important;
+    background-color: #ccc !important;
+    border: 8px #ccc solid !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
 }
 /*prevent text from disappearing*/
 @media screen and (min-width: 1024px){

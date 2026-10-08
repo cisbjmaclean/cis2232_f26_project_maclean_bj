@@ -1,4 +1,4 @@
-package ca.hccis.squash;
+package ca.hccis.squash.jpa.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

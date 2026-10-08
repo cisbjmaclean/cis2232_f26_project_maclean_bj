@@ -1,6 +1,6 @@
 package ca.hccis.squash.bo;
 
-import ca.hccis.squash.SquashMatch;
+import ca.hccis.squash.jpa.entity.SquashMatch;
 import ca.hccis.squash.dao.SkillsAssessmentSquashTechnicalDAO;
 import ca.hccis.squash.dao.SquashMatchDAO;
 import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;

@@ -1,6 +1,6 @@
 package ca.hccis.squash.dao;
 
-import ca.hccis.squash.SquashMatch;
+import ca.hccis.squash.jpa.entity.SquashMatch;
 import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,8 +82,28 @@ public class SquashMatchDAO {
 
             SquashMatch squashMatch = new SquashMatch();
             squashMatch.setId(rs.getInt("id"));
+            squashMatch.setMatchDate(rs.getString("matchDate"));
+            squashMatch.setCreatedDateTime(rs.getString("createdDateTime"));
+
             squashMatch.setPlayer1Name(rs.getString("player1Name"));
             squashMatch.setPlayer2Name(rs.getString("player2Name"));
+
+            squashMatch.setPlayer1Game1Score(rs.getByte("player1Game1Score"));
+            squashMatch.setPlayer2Game1Score(rs.getByte("player2Game1Score"));
+
+            squashMatch.setPlayer1Game2Score(rs.getByte("player1Game2Score"));
+            squashMatch.setPlayer2Game2Score(rs.getByte("player2Game2Score"));
+
+            squashMatch.setPlayer1Game3Score(rs.getByte("player1Game3Score"));
+            squashMatch.setPlayer2Game3Score(rs.getByte("player2Game3Score"));
+
+            squashMatch.setPlayer1Game4Score(rs.getByte("player1Game4Score"));
+            squashMatch.setPlayer2Game4Score(rs.getByte("player2Game4Score"));
+
+            squashMatch.setPlayer1Game5Score(rs.getByte("player1Game5Score"));
+            squashMatch.setPlayer2Game5Score(rs.getByte("player2Game5Score"));
+
+            squashMatch.setWinnerName(rs.getString("winnerName"));
             squashMatches.add(squashMatch);
         }
         return squashMatches;

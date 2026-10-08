@@ -32,21 +32,33 @@ label {
         <button style="display:block;margin-top:24px!important" class="centered">Submit</button>
     </form>
 
+    </br></br>
     <p th:if="${not #strings.isEmpty(message)}" th:text="#{error.message.no.data.found.name}">not found</p>
     <!--https://stackoverflow.com/a/33106495-->
     <table class="wbb centered" th:if="${not #lists.isEmpty(reportInput.squashMatches)}">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Player 1</th>
-            <th>Player 2</th>
+            <th>Date</th>
+            <th>Opponent</th>
+            <th>Result</th>
         </tr>
         </thead>
+
         <tbody>
-        <tr th:each="item,iterStat : ${reportInput.squashMatches}">
-            <td th:text="${item.id}"></td>
-            <td th:text="${item.player1Name}"></td>
-            <td th:text="${item.player2Name}"></td>
+        <tr th:each="item : ${reportInput.squashMatches}">
+
+            <td th:text="${item.matchDate}">
+                date here
+            </td>
+
+            <td th:text="${reportInput.name eq item.player1Name ? item.player2Name : item.player1Name}">
+                opponent here
+            </td>
+
+            <td th:text="${reportInput.name eq item.winnerName ? 'WIN' : 'LOSS'}">
+                result here
+            </td>
+
         </tr>
         </tbody>
     </table>
