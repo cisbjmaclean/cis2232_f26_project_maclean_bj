@@ -2,6 +2,7 @@ package ca.hccis.squash.controllers;
 
 import ca.hccis.squash.SquashMatch;
 import ca.hccis.squash.bo.SkillsAssessmentSquashTechnicalBO;
+import ca.hccis.squash.bo.SquashMatchBO;
 import ca.hccis.squash.dao.SkillsAssessmentSquashTechnicalDAO;
 import ca.hccis.squash.entity.ReportSquash;
 import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;
@@ -77,13 +78,9 @@ public class ReportController {
         //Write some model code to go to the db and get the appropriate assessments
         //Add them to a collection in the ReportSquash class
 
-        
-
-//        SkillsAssessmentSquashTechnicalBO skillsAssessmentSquashTechnicalBO = new SkillsAssessmentSquashTechnicalBO();
-//        ArrayList<SkillsAssessmentSquashTechnical> theList = skillsAssessmentSquashTechnicalBO.processSelectAllByAthleteAssessorName(reportSquash.getName());
-//        reportSquash.setSkillsAssessmentSquashTechnicals(theList);
-
-        ArrayList<SquashMatch> theList = new ArrayList<SquashMatch>();
+        SquashMatchBO squashMatchBO = new SquashMatchBO();
+        ArrayList<SquashMatch> theList = squashMatchBO.processSelectAllByName(reportSquash.getName());
+        reportSquash.setSquashMatches(theList);
 
         //Add a message in case the report does not contain any data
         if (theList != null && theList.isEmpty()) {
