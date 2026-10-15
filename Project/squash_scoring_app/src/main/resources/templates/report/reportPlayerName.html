@@ -27,7 +27,7 @@ label {
     <form th:action="@{/report/player/name/submit}" method="post" class="wbb"
           style="display:inline-block;text-align:left!important">
         <label th:text="#{label.report.player.name.report}">Player Name: </label>
-        <input type="text" th:field="${reportInput.name}"></input>
+        <input type="text"  th:field="${reportInput.name}"></input>
         <br></br>
         <button style="display:block;margin-top:24px!important" class="centered">Submit</button>
     </form>
@@ -51,11 +51,12 @@ label {
                 date here
             </td>
 
-            <td th:text="${reportInput.name eq item.player1Name ? item.player2Name : item.player1Name}">
+<!--            TODO - what if player 1 name and player 2 name both contain the name entered?-->
+            <td th:text="${#strings.containsIgnoreCase(item.player1Name,reportInput.name) ? item.player2Name : item.player1Name}">
                 opponent here
             </td>
-
-            <td th:text="${reportInput.name eq item.winnerName ? 'WIN' : 'LOSS'}">
+<!--            th:if="${#strings.containsIgnoreCase(user.email, 'gmail.com')}">-->
+            <td th:text="${#strings.containsIgnoreCase(item.winnerName,reportInput.name) ? 'WIN' : 'LOSS'}">
                 result here
             </td>
 
