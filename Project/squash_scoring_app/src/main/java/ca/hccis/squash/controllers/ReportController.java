@@ -46,7 +46,7 @@ public class ReportController {
     }
 
     /**
-     * Method to send user to the athlete/assessor name report.
+     * Method to send user to the player name report.
      *
      * @param model
      * @return view for list
@@ -54,7 +54,7 @@ public class ReportController {
      * @since 2025-10-06
      */
     @RequestMapping("/player/name")
-    public String reportSquashName(Model model) {
+    public String reportPlayerName(Model model) {
         logger.info("Running the reports controller player name method");
         model.addAttribute("reportInput",new ReportSquash());
         return "report/reportPlayerName";
@@ -71,7 +71,7 @@ public class ReportController {
      * @since 2025-10-06
      */
     @RequestMapping("/player/name/submit")
-    public String reportSquashNameSubmit(Model model, @ModelAttribute("reportInput") ReportSquash reportSquash) {
+    public String reportPlayerNameSubmit(Model model, @ModelAttribute("reportInput") ReportSquash reportSquash) {
 
         System.out.println("Name from input form:"+reportSquash.getName());
 
@@ -94,5 +94,21 @@ public class ReportController {
         return "report/reportPlayerName"; //Send user to another view.
     }
 
+    /**
+     * Method to send user to the player score report.
+     *
+     * @param model
+     * @return view for list
+     * @author BJM
+     * @since 2026-10-16
+     */
+    @RequestMapping("/player/score")
+    public String reportPlayerScore(Model model) {
+        logger.info("Running the reports controller player name method");
+        ReportSquash reportSquash = new ReportSquash();
+        model.addAttribute("message","Hello world");
+        model.addAttribute("reportInput",reportSquash);
+        return "report/reportPlayerName";
+    }
 
 }
