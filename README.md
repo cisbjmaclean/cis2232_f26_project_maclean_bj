@@ -50,4 +50,4 @@ Enter a player name and the report will return any rows that have that name 'lik
 ### Player score report ###
 
 Enter a player name and a date range and show the matches where that player played as either player 1 or player 2.  Give a drop down of all players as part of the user input. Show a chart of that players 
-matches in that time period and their total points in their matches.  The Y axis (horizontal) will be the opponents and the x axis (vertical) will be the total scores in that match.
+matches in that time period and their total points in their matches.  The axis (horizontal) will be the opponents and the axis (vertical) will be the total scores in that match for the player and the opponent.
