@@ -24,45 +24,97 @@ label {
 <div class="container has-text-centered">
     <h2 class="title is-2" th:text="#{label.report.player.score.report}">_</h2>
 
-    <form th:action="@{/report/player/name/submit}" method="post" class="wbb"
+    <form th:action="@{/report/player/score/submit}" method="post" class="wbb"
           style="display:inline-block;text-align:left!important">
-        <label th:text="#{label.report.player.name.report}">Player Name: </label>
-        <input type="text"  th:field="${reportInput.name}"></input>
+        <!--        <label th:text="#{label.report.player.name.report}">Player Name: </label>-->
+        <!--        <input type="text"  th:field="${reportInput.name}"></input>-->
+
+        <label for="playerSelect">Choose a player:</label>
+        <select id="playerSelect" th:field="${reportInput.name}">
+            <option value="">-- Select --</option>
+            <option th:each="name : ${session.players}" th:value="${name}" th:text="${name}"></option>
+        </select>
+<br/>
+        <label for="start-date">Select Start Date:</label>
+        <input type="date" id="start-date" th:field="${reportInput.startDate}"/>
+<br/>
+        <label for="end-date">Select End Date:</label>
+        <input type="date" id="end-date" th:field="${reportInput.endDate}"/>
+
+
         <br></br>
         <button style="display:block;margin-top:24px!important" class="centered">Submit</button>
     </form>
 
     </br></br>
     <p th:if="${not #strings.isEmpty(message)}" th:text="${message}">not found</p>
-    <!--https://stackoverflow.com/a/33106495-->
-    <table class="wbb centered" th:if="${not #lists.isEmpty(reportInput.squashMatches)}">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Opponent</th>
-            <th>Result</th>
-        </tr>
-        </thead>
 
-        <tbody>
-        <tr th:each="item : ${reportInput.squashMatches}">
+    <!-- 1. The Parent Container with Flexbox centering -->
+    <div style="width: 600px; height: 350px; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
 
-            <td th:text="${item.matchDate}">
-                date here
-            </td>
+        <!-- 2. An Inner Wrapper that sets the actual size of the chart -->
+        <div style="width: 400px; height: 250px; position: relative;">
+            <canvas id="reportChart"></canvas>
+        </div>
 
-<!--            TODO - what if player 1 name and player 2 name both contain the name entered?-->
-            <td th:text="${#strings.containsIgnoreCase(item.player1Name,reportInput.name) ? item.player2Name : item.player1Name}">
-                opponent here
-            </td>
-<!--            th:if="${#strings.containsIgnoreCase(user.email, 'gmail.com')}">-->
-            <td th:text="${#strings.containsIgnoreCase(item.winnerName,reportInput.name) ? 'WIN' : 'LOSS'}">
-                result here
-            </td>
+    </div>
 
-        </tr>
-        </tbody>
-    </table>
+    <script th:inline="javascript">
+        const matchData = [[${squashMatchScoreSummaries}]];
+        console.log('Match Data:', matchData);
+
+        const opponentNames = matchData.map(item => item.opponentPlayerName);
+        const points = matchData.map(item => item.playerPoints);
+        const opponentPoints = matchData.map(item => item.opponentPoints);
+
+        const ctx = document.getElementById('reportChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: opponentNames,
+                datasets: [
+                    {
+                        label: 'Points',
+                        data: points,
+                        borderWidth: 1,
+                        trendlineLinear: {
+                            style: 'rgba(54, 162, 235, .8)', // Swapped color to blue to match player points cleanly
+                            lineStyle: 'solid',
+                            width: 3
+                        }
+                    },
+                    {
+                        label: 'Opponent Points',
+                        data: opponentPoints,
+                        borderWidth: 1,
+                        trendlineLinear: {
+                            style: 'rgba(255, 99, 132, .8)',
+                            lineStyle: 'solid',
+                            width: 3
+                        }
+                    }
+                ]
+            },
+            options: {
+                responsive: true,            // Crucial: Forces chart to calculate bounds based on its parent container
+                maintainAspectRatio: false,  // Crucial: Overrides Chart.js default aspect ratios
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+
+
+
+
+
+
+
 
 </div>
 

@@ -30,5 +30,9 @@ public class SquashMatchBO {
         return squashMatches;
     }
 
+    public ArrayList<String> getAllPlayerNames(){
+        SquashMatchDAO squashMatchDAO = new SquashMatchDAO();
+        return squashMatchDAO.selectAllPlayers();
+    }
 
 }

@@ -1,11 +1,10 @@
 package ca.hccis.squash.controllers;
 
+import ca.hccis.squash.bo.ReportBO;
+import ca.hccis.squash.entity.SquashMatchScoreSummary;
 import ca.hccis.squash.jpa.entity.SquashMatch;
-import ca.hccis.squash.bo.SkillsAssessmentSquashTechnicalBO;
 import ca.hccis.squash.bo.SquashMatchBO;
-import ca.hccis.squash.dao.SkillsAssessmentSquashTechnicalDAO;
-import ca.hccis.squash.entity.ReportSquash;
-import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;
+import ca.hccis.squash.entity.ReportInput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
+
 import java.util.ArrayList;
 
 /**
@@ -55,8 +55,8 @@ public class ReportController {
      */
     @RequestMapping("/player/name")
     public String reportPlayerName(Model model) {
-        logger.info("Running the reports controller player name method");
-        model.addAttribute("reportInput",new ReportSquash());
+        logger.info("Running the reports controller player score method");
+        model.addAttribute("reportInput", new ReportInput());
         return "report/reportPlayerName";
     }
 
@@ -65,22 +65,20 @@ public class ReportController {
      * Process the report - name
      *
      * @param model
-     * @param reportSquash Object containing inputs for the report
+     * @param reportInput Object containing inputs for the report
      * @return view to show report
      * @author BJM
      * @since 2025-10-06
      */
     @RequestMapping("/player/name/submit")
-    public String reportPlayerNameSubmit(Model model, @ModelAttribute("reportInput") ReportSquash reportSquash) {
+    public String reportPlayerNameSubmit(Model model, @ModelAttribute("reportInput") ReportInput reportInput) {
 
-        System.out.println("Name from input form:"+reportSquash.getName());
+        System.out.println("Name from input form:" + reportInput.getName());
 
-        //Write some model code to go to the db and get the appropriate assessments
-        //Add them to a collection in the ReportSquash class
-
+        //Get all the applicable squash matches from the database
         SquashMatchBO squashMatchBO = new SquashMatchBO();
-        ArrayList<SquashMatch> theList = squashMatchBO.processSelectAllByName(reportSquash.getName());
-        reportSquash.setSquashMatches(theList);
+        ArrayList<SquashMatch> theList = squashMatchBO.processSelectAllByName(reportInput.getName());
+        reportInput.setSquashMatches(theList);
 
         //Add a message in case the report does not contain any data
         if (theList != null && theList.isEmpty()) {
@@ -89,7 +87,7 @@ public class ReportController {
         }
 
         //Put object in model so it can be used on the view (html)
-        model.addAttribute("reportInput", reportSquash);
+        model.addAttribute("reportInput", reportInput);
 
         return "report/reportPlayerName"; //Send user to another view.
     }
@@ -103,12 +101,46 @@ public class ReportController {
      * @since 2026-10-16
      */
     @RequestMapping("/player/score")
-    public String reportPlayerScore(Model model) {
-        logger.info("Running the reports controller player name method");
-        ReportSquash reportSquash = new ReportSquash();
-        model.addAttribute("message","Hello world");
-        model.addAttribute("reportInput",reportSquash);
-        return "report/reportPlayerName";
+    public String reportPlayerScore(Model model, HttpSession session) {
+        logger.info("Running the reports controller player score method");
+
+        //get a list of all the player names
+        SquashMatchBO squashMatchBO = new SquashMatchBO();
+        ArrayList<String> players = squashMatchBO.getAllPlayerNames();
+        session.setAttribute("players", players);
+
+        model.addAttribute("reportInput", new ReportInput());
+        return "report/reportPlayerScore";
     }
+
+    /**
+     * Process the report - name
+     *
+     * @param model
+     * @param reportInput Object containing inputs for the report
+     * @return view to show report
+     * @author BJM
+     * @since 2026-10-19
+     */
+    @RequestMapping("/player/score/submit")
+    public String reportPlayerScoreSubmit(Model model, @ModelAttribute("reportInput") ReportInput reportInput) {
+
+        System.out.println("Name from input form:" + reportInput.getName());
+
+        ReportBO.processPlayerScoreReport(reportInput);
+
+        //Add a message in case the report does not contain any data
+        if (reportInput.getSquashMatches() != null && reportInput.getSquashMatches().isEmpty()) {
+            model.addAttribute("message", "No matches found for that name");
+            System.out.println("BJM - no data found");
+        }
+
+        //Put object in model so it can be used on the view (html)
+        model.addAttribute("reportInput", reportInput);
+        model.addAttribute("squashMatchScoreSummaries", reportInput.getSquashMatchScoreSummaries());
+
+        return "report/reportPlayerScore"; //Send user to another view.
+    }
+
 
 }

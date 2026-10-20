@@ -6,8 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class SquashMatchDAO {
     private static ResultSet rs;
@@ -28,6 +27,62 @@ public class SquashMatchDAO {
             logger.error(e.toString());
         }
     }
+
+    /**
+     * Select all player names sorted alphabetically
+     *
+     * @since 20261019
+     * @author BJM
+     */
+    public ArrayList<String> selectAllPlayers() {
+        ArrayList<String> players = new ArrayList<>();
+        HashSet<String> playerSet = new HashSet<>();
+
+        Statement stmt = null;
+
+        //******************************************************************
+        //Use the DriverManager to get a connection to our MySql database.  Note
+        //that in the dependencies, we added the Java connector to MySql which
+        //will allow us to connect to a MySql database.
+        //******************************************************************
+        //******************************************************************
+        //Create a statement object using our connection to the database.  This
+        //statement object will allow us to run sql commands against the database.
+        //******************************************************************
+        try {
+
+            stmt = conn.createStatement();
+            String sqlStatement = "select * from SquashMatch ";
+            rs = stmt.executeQuery(sqlStatement);
+
+            //******************************************************************
+            //Loop through the result set using the next method.
+            //******************************************************************
+            ArrayList<SquashMatch>  squashMatches = loadList(rs);
+
+            for(SquashMatch current: squashMatches){
+                playerSet.add(current.getPlayer1Name());
+                playerSet.add(current.getPlayer2Name());
+            }
+
+            players.addAll(playerSet);
+            Collections.sort(players);
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+                stmt.close();
+            } catch (SQLException ex) {
+                System.out.println("There was an error closing");
+            }
+        }
+        return players;
+    }
+
 
     /**
      * Select all by name
@@ -52,7 +107,8 @@ public class SquashMatchDAO {
 
             stmt = conn.createStatement();
             String sqlStatement = "select * from SquashMatch " +
-                    "where player1Name like '%"+name+"%' or player2Name like '%"+name+"%';";
+                    "where player1Name like '%"+name+"%' or player2Name like '%"+name+"%'" +
+                    " ORDER BY matchDate;";
             rs = stmt.executeQuery(sqlStatement);
 
             //******************************************************************
