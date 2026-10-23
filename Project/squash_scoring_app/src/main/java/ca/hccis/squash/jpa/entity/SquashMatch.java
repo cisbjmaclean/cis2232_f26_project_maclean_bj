@@ -218,4 +218,25 @@ public class SquashMatch {
         this.winnerName = winnerName;
     }
 
+    @Override
+    public String toString() {
+        return "SquashMatch{" +
+                "id=" + id +
+                ", matchDate='" + matchDate + '\'' +
+                ", createdDateTime='" + createdDateTime + '\'' +
+                ", player1Name='" + player1Name + '\'' +
+                ", player2Name='" + player2Name + '\'' +
+                ", player1Game1Score=" + player1Game1Score +
+                ", player2Game1Score=" + player2Game1Score +
+                ", player1Game2Score=" + player1Game2Score +
+                ", player2Game2Score=" + player2Game2Score +
+                ", player1Game3Score=" + player1Game3Score +
+                ", player2Game3Score=" + player2Game3Score +
+                ", player1Game4Score=" + player1Game4Score +
+                ", player2Game4Score=" + player2Game4Score +
+                ", player1Game5Score=" + player1Game5Score +
+                ", player2Game5Score=" + player2Game5Score +
+                ", winnerName='" + winnerName + '\'' +
+                '}';
+    }
 }
