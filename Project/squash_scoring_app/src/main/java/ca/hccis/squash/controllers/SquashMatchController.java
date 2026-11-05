@@ -2,6 +2,9 @@ package ca.hccis.squash.controllers;
 
 import ca.hccis.squash.bo.SkillsAssessmentSquashTechnicalBO;
 import ca.hccis.squash.bo.SkillsAssessmentSquashTechnicalValidationBO;
+import ca.hccis.squash.bo.SquashMatchBO;
+import ca.hccis.squash.entity.SkillsAssessmentSquashTechnicalDto;
+import ca.hccis.squash.entity.SquashMatchDto;
 import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;
 import ca.hccis.squash.jpa.entity.SquashMatch;
 import ca.hccis.squash.repositories.SquashMatchRepository;
@@ -116,6 +119,44 @@ public class SquashMatchController {
         //SkillsAssessmentSquashTechnicalBO.calculateTechnicalScore(skillsAssessmentSquashTechnical);
         _smr.save(squashMatch);
         return "redirect:/squashmatch";
+    }
+
+    @RequestMapping("/list/edit")
+    public String showCreateForm(Model model) {
+        SquashMatchDto squashMatchForm = new SquashMatchDto();
+
+        Iterable<SquashMatch> squashMatches = _smr.findAll();
+        ArrayList<SquashMatch> tempList = new ArrayList<>();
+        for (SquashMatch current : squashMatches) {
+            tempList.add(current);
+        }
+        squashMatchForm.setSquashMatches(tempList);
+        model.addAttribute("form", squashMatchForm);
+        return "squashmatch/listedit";
+    }
+
+    @RequestMapping("/list/edit/submit")
+    public String listEditSubmit(@ModelAttribute SquashMatchDto form, Model model) {
+
+        //TODO calculate winners before saving
+
+        for(SquashMatch current: form.getSquashMatches()){
+            current.setWinnerName(SquashMatchBO.determineWinner(current));
+        }
+
+        _smr.saveAll(form.getSquashMatches());
+
+        SquashMatchDto squashMatchForm = new SquashMatchDto();
+
+        Iterable<SquashMatch> squashMatches = _smr.findAll();
+        ArrayList<SquashMatch> tempList = new ArrayList<>();
+        for (SquashMatch current : squashMatches) {
+            tempList.add(current);
+        }
+        squashMatchForm.setSquashMatches(tempList);
+        model.addAttribute("form", squashMatchForm);
+        return "squashmatch/listedit";
+
     }
 
 }
