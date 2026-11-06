@@ -29,7 +29,7 @@ CREATE TABLE SquashMatch (
                               player2Game4Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
                               player1Game5Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
                               player2Game5Score   TINYINT UNSIGNED NOT NULL DEFAULT 0,
-                              winnerName          VARCHAR(100)    NOT NULL,
+                              winnerName          VARCHAR(100)    DEFAULT 'Unknown',
                               PRIMARY KEY (id)
 );
 

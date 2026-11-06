@@ -1,9 +1,6 @@
 package ca.hccis.squash.jpa.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
@@ -12,6 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Table(name = "squashmatch")
 public class SquashMatch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -86,8 +84,8 @@ public class SquashMatch {
     private Byte player2Game5Score;
 
     @Size(max = 100)
-    @NotNull
-    @Column(name = "winnerName", nullable = false, length = 100)
+    @ColumnDefault("'Unknown'")
+    @Column(name = "winnerName", length = 100)
     private String winnerName;
 
     public Integer getId() {
@@ -218,25 +216,4 @@ public class SquashMatch {
         this.winnerName = winnerName;
     }
 
-    @Override
-    public String toString() {
-        return "SquashMatch{" +
-                "id=" + id +
-                ", matchDate='" + matchDate + '\'' +
-                ", createdDateTime='" + createdDateTime + '\'' +
-                ", player1Name='" + player1Name + '\'' +
-                ", player2Name='" + player2Name + '\'' +
-                ", player1Game1Score=" + player1Game1Score +
-                ", player2Game1Score=" + player2Game1Score +
-                ", player1Game2Score=" + player1Game2Score +
-                ", player2Game2Score=" + player2Game2Score +
-                ", player1Game3Score=" + player1Game3Score +
-                ", player2Game3Score=" + player2Game3Score +
-                ", player1Game4Score=" + player1Game4Score +
-                ", player2Game4Score=" + player2Game4Score +
-                ", player1Game5Score=" + player1Game5Score +
-                ", player2Game5Score=" + player2Game5Score +
-                ", winnerName='" + winnerName + '\'' +
-                '}';
-    }
 }

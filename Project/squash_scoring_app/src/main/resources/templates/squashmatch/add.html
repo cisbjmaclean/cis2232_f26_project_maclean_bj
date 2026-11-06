@@ -42,10 +42,7 @@
             <input type="date" th:field="${squashMatch.matchDate}"
                    id="matchDate" />
         </p>
-        <p class="cd"
-           th:if="${#fields.hasErrors('matchDate')}"
-           th:errors="*{matchDate}"></p>
-
+        <p class="cd" th:if="${#fields.hasErrors('${squashMatch.matchDate}')}" th:errors="${squashMatch.matchDate}"></p>
         <!-- Created Date/Time -->
         <p>
             <label for="createdDateTime">Created Date/Time:</label>
@@ -67,130 +64,120 @@
            th:if="${#fields.hasErrors('player1Name')}"
            th:errors="*{player1Name}"></p>
 
-<!--        &lt;!&ndash; Player 2 &ndash;&gt;-->
-<!--        <p>-->
-<!--            <label for="player2Name">Player 2 Name:</label>-->
-<!--            <input type="text" th:field="*{player2Name}"-->
-<!--                   id="player2Name" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player2Name')}"-->
-<!--           th:errors="*{player2Name}"></p>-->
+        <!-- Player 2 -->
+        <p>
+            <label for="player2Name">Player 2 Name:</label>
+            <input type="text" th:field="*{player2Name}"
+                   id="player2Name" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player2Name')}"
+           th:errors="*{player2Name}"></p>
 
-<!--        &lt;!&ndash; Game 1 Scores &ndash;&gt;-->
-<!--        <h3>Game 1</h3>-->
+        <!-- Game 1 Scores -->
+        <h3>Game 1</h3>
 
-<!--        <p>-->
-<!--            <label for="player1Game1Score">Player 1 Score:</label>-->
-<!--            <input type="number" th:field="*{player1Game1Score}"-->
-<!--                   id="player1Game1Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player1Game1Score')}"-->
-<!--           th:errors="*{player1Game1Score}"></p>-->
+        <p>
+            <label for="player1Game1Score">Player 1 Score:</label>
+            <input type="number" th:field="*{player1Game1Score}"
+                   id="player1Game1Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player1Game1Score')}"
+           th:errors="*{player1Game1Score}"></p>
 
-<!--        <p>-->
-<!--            <label for="player2Game1Score">Player 2 Score:</label>-->
-<!--            <input type="number" th:field="*{player2Game1Score}"-->
-<!--                   id="player2Game1Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player2Game1Score')}"-->
-<!--           th:errors="*{player2Game1Score}"></p>-->
+        <p>
+            <label for="player2Game1Score">Player 2 Score:</label>
+            <input type="number" th:field="*{player2Game1Score}"
+                   id="player2Game1Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player2Game1Score')}"
+           th:errors="*{player2Game1Score}"></p>
 
-<!--        &lt;!&ndash; Game 2 Scores &ndash;&gt;-->
-<!--        <h3>Game 2</h3>-->
+        <!-- Game 2 Scores -->
+        <h3>Game 2</h3>
 
-<!--        <p>-->
-<!--            <label for="player1Game2Score">Player 1 Score:</label>-->
-<!--            <input type="number" th:field="*{player1Game2Score}"-->
-<!--                   id="player1Game2Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player1Game2Score')}"-->
-<!--           th:errors="*{player1Game2Score}"></p>-->
+        <p>
+            <label for="player1Game2Score">Player 1 Score:</label>
+            <input type="number" th:field="*{player1Game2Score}"
+                   id="player1Game2Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player1Game2Score')}"
+           th:errors="*{player1Game2Score}"></p>
 
-<!--        <p>-->
-<!--            <label for="player2Game2Score">Player 2 Score:</label>-->
-<!--            <input type="number" th:field="*{player2Game2Score}"-->
-<!--                   id="player2Game2Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player2Game2Score')}"-->
-<!--           th:errors="*{player2Game2Score}"></p>-->
+        <p>
+            <label for="player2Game2Score">Player 2 Score:</label>
+            <input type="number" th:field="*{player2Game2Score}"
+                   id="player2Game2Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player2Game2Score')}"
+           th:errors="*{player2Game2Score}"></p>
 
-<!--        &lt;!&ndash; Game 3 Scores &ndash;&gt;-->
-<!--        <h3>Game 3</h3>-->
+        <!-- Game 3 Scores -->
+        <h3>Game 3</h3>
 
-<!--        <p>-->
-<!--            <label for="player1Game3Score">Player 1 Score:</label>-->
-<!--            <input type="number" th:field="*{player1Game3Score}"-->
-<!--                   id="player1Game3Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player1Game3Score')}"-->
-<!--           th:errors="*{player1Game3Score}"></p>-->
+        <p>
+            <label for="player1Game3Score">Player 1 Score:</label>
+            <input type="number" th:field="*{player1Game3Score}"
+                   id="player1Game3Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player1Game3Score')}"
+           th:errors="*{player1Game3Score}"></p>
 
-<!--        <p>-->
-<!--            <label for="player2Game3Score">Player 2 Score:</label>-->
-<!--            <input type="number" th:field="*{player2Game3Score}"-->
-<!--                   id="player2Game3Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player2Game3Score')}"-->
-<!--           th:errors="*{player2Game3Score}"></p>-->
+        <p>
+            <label for="player2Game3Score">Player 2 Score:</label>
+            <input type="number" th:field="*{player2Game3Score}"
+                   id="player2Game3Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player2Game3Score')}"
+           th:errors="*{player2Game3Score}"></p>
 
-<!--        &lt;!&ndash; Game 4 Scores &ndash;&gt;-->
-<!--        <h3>Game 4</h3>-->
+        <!-- Game 4 Scores -->
+        <h3>Game 4</h3>
 
-<!--        <p>-->
-<!--            <label for="player1Game4Score">Player 1 Score:</label>-->
-<!--            <input type="number" th:field="*{player1Game4Score}"-->
-<!--                   id="player1Game4Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player1Game4Score')}"-->
-<!--           th:errors="*{player1Game4Score}"></p>-->
+        <p>
+            <label for="player1Game4Score">Player 1 Score:</label>
+            <input type="number" th:field="*{player1Game4Score}"
+                   id="player1Game4Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player1Game4Score')}"
+           th:errors="*{player1Game4Score}"></p>
 
-<!--        <p>-->
-<!--            <label for="player2Game4Score">Player 2 Score:</label>-->
-<!--            <input type="number" th:field="*{player2Game4Score}"-->
-<!--                   id="player2Game4Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player2Game4Score')}"-->
-<!--           th:errors="*{player2Game4Score}"></p>-->
+        <p>
+            <label for="player2Game4Score">Player 2 Score:</label>
+            <input type="number" th:field="*{player2Game4Score}"
+                   id="player2Game4Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player2Game4Score')}"
+           th:errors="*{player2Game4Score}"></p>
 
-<!--        &lt;!&ndash; Game 5 Scores &ndash;&gt;-->
-<!--        <h3>Game 5</h3>-->
+        <!-- Game 5 Scores -->
+        <h3>Game 5</h3>
 
-<!--        <p>-->
-<!--            <label for="player1Game5Score">Player 1 Score:</label>-->
-<!--            <input type="number" th:field="*{player1Game5Score}"-->
-<!--                   id="player1Game5Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player1Game5Score')}"-->
-<!--           th:errors="*{player1Game5Score}"></p>-->
+        <p>
+            <label for="player1Game5Score">Player 1 Score:</label>
+            <input type="number" th:field="*{player1Game5Score}"
+                   id="player1Game5Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player1Game5Score')}"
+           th:errors="*{player1Game5Score}"></p>
 
-<!--        <p>-->
-<!--            <label for="player2Game5Score">Player 2 Score:</label>-->
-<!--            <input type="number" th:field="*{player2Game5Score}"-->
-<!--                   id="player2Game5Score" min="0" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('player2Game5Score')}"-->
-<!--           th:errors="*{player2Game5Score}"></p>-->
-
-<!--        &lt;!&ndash; Winner &ndash;&gt;-->
-<!--        <p>-->
-<!--            <label for="winnerName">Winner Name:</label>-->
-<!--            <input type="text" th:field="*{winnerName}"-->
-<!--                   id="winnerName" />-->
-<!--        </p>-->
-<!--        <p class="cd"-->
-<!--           th:if="${#fields.hasErrors('winnerName')}"-->
-<!--           th:errors="*{winnerName}"></p>-->
+        <p>
+            <label for="player2Game5Score">Player 2 Score:</label>
+            <input type="number" th:field="*{player2Game5Score}"
+                   id="player2Game5Score" min="0" />
+        </p>
+        <p class="cd"
+           th:if="${#fields.hasErrors('player2Game5Score')}"
+           th:errors="*{player2Game5Score}"></p>
 
         <!-- Submit button -->
         <button type="submit"

@@ -82,6 +82,21 @@ public class SquashMatchController {
     }
 
     /**
+     * Page to edit
+     *
+     * @param id    ID
+     * @param model
+     * @author BJM
+     * @since 20251201
+     */
+    @RequestMapping("/add")
+    public String add(Model model) {
+        model.addAttribute("squashMatch", new SquashMatch());
+        return "squashmatch/add";
+    }
+
+
+    /**
      * Submit method that processes add and edit and any form submission
      *
      * @param model
@@ -115,8 +130,9 @@ public class SquashMatchController {
             return "squashmatch/add";
         }
 
-        //BJM 20251124 calculate the score before saving.
-        //SkillsAssessmentSquashTechnicalBO.calculateTechnicalScore(skillsAssessmentSquashTechnical);
+        //BJM 20261105 detemine the winner
+        squashMatch.setWinnerName(SquashMatchBO.determineWinner(squashMatch));
+
         _smr.save(squashMatch);
         return "redirect:/squashmatch";
     }
@@ -157,6 +173,30 @@ public class SquashMatchController {
         model.addAttribute("form", squashMatchForm);
         return "squashmatch/listedit";
 
+    }
+
+
+    /**
+     * Page to edit
+     *
+     * @param id    ID
+     * @param model
+     * @author BJM
+     * @since 20251201
+     */
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable int id, Model model) {
+
+        _smr.deleteById(id);
+
+        //todo How can we best communcicate this to the view.
+        model.addAttribute("messageSuccess", "Deleted squash match");
+
+        //reload the list
+        Iterable<SquashMatch> squashMatches = _smr.findAll();
+        model.addAttribute("squashMatches", squashMatches);
+        model.addAttribute("squashMatch", new SquashMatch());
+        return "squashmatch/list";
     }
 
 }
