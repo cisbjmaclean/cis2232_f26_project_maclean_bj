@@ -1,5 +1,6 @@
 package ca.hccis.squash.jpa.entity;
 
+import ca.hccis.squash.util.CisUtility;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -8,6 +9,23 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 @Table(name = "squashmatch")
 public class SquashMatch {
+
+    public SquashMatch() {
+        this.setCreatedDateTime(CisUtility.getCurrentDate("yyyy-MM-dd hh:mm"));
+        this.setMatchDate(CisUtility.getCurrentDate("yyyy-MM-dd"));
+        this.player1Game1Score = 0;
+        this.player1Game2Score = 0;
+        this.player1Game3Score = 0;
+        this.player1Game4Score = 0;
+        this.player1Game5Score = 0;
+        this.player2Game1Score = 0;
+        this.player2Game2Score = 0;
+        this.player2Game3Score = 0;
+        this.player2Game4Score = 0;
+        this.player2Game5Score = 0;
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

@@ -8,6 +8,7 @@ import ca.hccis.squash.entity.SquashMatchDto;
 import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;
 import ca.hccis.squash.jpa.entity.SquashMatch;
 import ca.hccis.squash.repositories.SquashMatchRepository;
+import ca.hccis.squash.util.CisUtility;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -84,17 +85,18 @@ public class SquashMatchController {
     /**
      * Page to edit
      *
-     * @param id    ID
      * @param model
      * @author BJM
      * @since 20251201
      */
     @RequestMapping("/add")
     public String add(Model model) {
-        model.addAttribute("squashMatch", new SquashMatch());
+        SquashMatch newSquashMatch = new SquashMatch();
+//        newSquashMatch.setCreatedDateTime(CisUtility.getCurrentDate("yyyy-MM-dd hh:mm"));
+//        newSquashMatch.setMatchDate(CisUtility.getCurrentDate("yyyy-MM-dd"));
+        model.addAttribute("squashMatch", newSquashMatch);
         return "squashmatch/add";
     }
-
 
     /**
      * Submit method that processes add and edit and any form submission
