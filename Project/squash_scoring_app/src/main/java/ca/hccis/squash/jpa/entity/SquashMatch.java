@@ -41,12 +41,12 @@ public class SquashMatch {
     @Column(name = "createdDateTime", nullable = false, length = 100)
     private String createdDateTime;
 
-    @Size(max = 100)
+    @Size(min = 1,max = 100)
     @NotNull
     @Column(name = "player1Name", nullable = false, length = 100)
     private String player1Name;
 
-    @Size(max = 100)
+    @Size(min = 1,max = 100)
     @NotNull
     @Column(name = "player2Name", nullable = false, length = 100)
     private String player2Name;

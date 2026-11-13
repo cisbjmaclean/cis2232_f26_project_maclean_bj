@@ -60,9 +60,9 @@ public class Controller {
                         System.out.println("Here are the rows");
                         Gson gson = new Gson();
                         for (int currentIndex = 0; currentIndex < jsonArray.length(); currentIndex++) {
-                            System.out.println(jsonArray.getJSONObject(currentIndex).toString());
-//                        SkillsAssessmentSquashTechnical current = gson.fromJson(jsonArray.getJSONObject(currentIndex).toString(), SkillsAssessmentSquashTechnical.class);
-//                        System.out.println(current.toString());
+                            //System.out.println(jsonArray.getJSONObject(currentIndex).toString());
+                            SquashMatch current = gson.fromJson(jsonArray.getJSONObject(currentIndex).toString(), SquashMatch.class);
+                            System.out.println(current.toString());
                         }
                     }else{
                         System.out.println("No rows found");

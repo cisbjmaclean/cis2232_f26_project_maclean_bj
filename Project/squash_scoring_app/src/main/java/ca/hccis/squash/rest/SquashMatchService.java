@@ -20,7 +20,7 @@ import java.util.List;
  * Service class for accessing using REST.
  *
  * @author BJM
- * @since 20251110
+ * @since 20261110
  */
 @RestController
 @RequestMapping("/api/SquashMatchService/v1/squashMatches")
@@ -70,7 +70,7 @@ public class SquashMatchService {
     public ResponseEntity<SquashMatch> create(
             @RequestBody SquashMatch obj) {
 
-        SquashMatchBO.determineWinner(obj);
+        obj.setWinnerName(SquashMatchBO.determineWinner(obj));
         SquashMatch saved = repo.save(obj);
 
         return ResponseEntity.ok(saved);
@@ -82,7 +82,7 @@ public class SquashMatchService {
             @RequestBody SquashMatch obj) {
 
         obj.setId(id);
-        SquashMatchBO.determineWinner(obj);
+        obj.setWinnerName(SquashMatchBO.determineWinner(obj));
         return ResponseEntity.ok(repo.save(obj));
     }
 }

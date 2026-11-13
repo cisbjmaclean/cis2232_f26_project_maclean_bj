@@ -203,6 +203,7 @@ public class SquashMatch {
                 "Players:\n" +
                 "  Player 1:     " + player1Name + "\n" +
                 "  Player 2:     " + player2Name + "\n" +
+                "  Winner:       " + winnerName + "\n" +
                 "---------------------------------\n" +
                 "Game Scores:\n" +
                 "  Game 1:       " + player1Game1Score + " - " + player2Game1Score + "\n" +
