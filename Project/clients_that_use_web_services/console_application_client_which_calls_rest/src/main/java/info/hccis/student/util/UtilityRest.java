@@ -1,6 +1,7 @@
 package info.hccis.student.util;
 
 import com.google.gson.Gson;
+import info.hccis.model.jpa.SquashMatch;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,8 +21,8 @@ public class UtilityRest {
     /**
      * This method will call the rest web service and give back the json
      *
-     * @since 20171117
      * @author BJM
+     * @since 20171117
      */
     public static String getJsonFromRest(String urlString) {
 
@@ -62,12 +63,12 @@ public class UtilityRest {
      * This method will access the service to get all of the objecrts from
      * the web application service.
      *
-     * @since 20161115
      * @author BJM
+     * @since 20161115
      */
     public static Object addUsingRest(String urlIn, Object objectIn) {
-        
-        
+
+
         //**********************************
         //Create a test camper
         //**********************************
@@ -103,7 +104,7 @@ public class UtilityRest {
             os.flush();
 
             if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED
-                    && conn.getResponseCode() != HttpURLConnection.HTTP_OK ) {
+                    && conn.getResponseCode() != HttpURLConnection.HTTP_OK) {
                 System.out.println("Failed : HTTP error code : "
                         + conn.getResponseCode()
                         + conn.getResponseMessage());
@@ -117,9 +118,9 @@ public class UtilityRest {
                 while ((output = br.readLine()) != null) {
                     content += output;
                 }
-                objectReturned = gson.fromJson(content,objectIn.getClass());
+                objectReturned = gson.fromJson(content, objectIn.getClass());
                 //System.out.println("Success : Added booking (" + studentReturned.toString() + ")\n");
-                
+
             }
             conn.disconnect();
         } catch (MalformedURLException e) {
@@ -134,73 +135,73 @@ public class UtilityRest {
      * This method will access the CamperService to get all of the campers from
      * the campers web application service.
      *
-     * @since 20161115
      * @author BJM
+     * @since 20161115
      */
-//    public static void updateUsingRest(String urlIn, Camper camper) {
-//        //**********************************
-//        //Create a test camper
-//        //**********************************
-//
-//        Gson gson = new Gson();
-//        String temp = "";
-//
-//        //************************************
-//        //convert the camper to a json string
-//        //************************************
-//        temp = gson.toJson(camper);
-//
-//        //*********************************************
-//        // Access the rest web service
-//        //https://www.tutorialspoint.com/restful/restful_quick_guide.htm
-//        //*********************************************
-//        try {
-//
-//            URL url = new URL(urlIn);
-//            //System.out.println(urlIn);
-//            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//            conn.setDoOutput(true);
-//            conn.setRequestMethod("PUT");
-//            conn.setRequestProperty("Content-Type", "application/json;charset=utf-8");
-//
-//            //System.out.println("json=" + temp);
-//            String input = temp;
-//
-//            //Write the bytes of json to the output stream for the connection.
-//            OutputStream os = conn.getOutputStream();
-//            os.write(input.getBytes());
-//            os.flush();
-//
-//            if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
-//                System.out.println("Failed : HTTP error code : "
-//                        + conn.getResponseCode()
-//                        + conn.getResponseMessage());
-//            } else {
-//
-//                BufferedReader br = new BufferedReader(new InputStreamReader(
-//                        (conn.getInputStream())));
-//
-//                String output;
-//                String content = "";
-//                while ((output = br.readLine()) != null) {
-//                    content += output;
-//                }
-//                Camper camperReturned = gson.fromJson(content, Camper.class);
-//                System.out.println("Success : Updated camper (" + camperReturned.getId() + ")\n");
-//            }
-//            conn.disconnect();
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
+    public static SquashMatch updateUsingRest(String urlIn, SquashMatch squashMatch) {
+
+        Gson gson = new Gson();
+        String temp = "";
+
+        //************************************
+        //convert the camper to a json string
+        //************************************
+        temp = gson.toJson(squashMatch);
+        SquashMatch squashMatchReturned = null;
+        //*********************************************
+        // Access the rest web service
+        //https://www.tutorialspoint.com/restful/restful_quick_guide.htm
+        //*********************************************
+        try {
+
+            URL url = new URL(urlIn);
+            //System.out.println(urlIn);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Content-Type", "application/json;charset=utf-8");
+
+            //System.out.println("json=" + temp);
+            String input = temp;
+
+            //Write the bytes of json to the output stream for the connection.
+            OutputStream os = conn.getOutputStream();
+            os.write(input.getBytes());
+            os.flush();
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode != HttpURLConnection.HTTP_CREATED
+                    && responseCode != HttpURLConnection.HTTP_OK) {
+                System.out.println("Failed : HTTP error code : "
+                        + conn.getResponseCode()
+                        + conn.getResponseMessage());
+            } else {
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(
+                        (conn.getInputStream())));
+
+                String output;
+                String content = "";
+                while ((output = br.readLine()) != null) {
+                    content += output;
+                }
+                squashMatchReturned = gson.fromJson(content, SquashMatch.class);
+                System.out.println("Success : Updated match (" + squashMatchReturned.getId() + ")\n");
+            }
+            conn.disconnect();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return squashMatchReturned;
+    }
+
     /**
      * This method will access the service to delete a row
      *
-     * @since 20251117
      * @author BJM
+     * @since 20251117
      */
     public static void deleteUsingRest(String urlIn, int id) {
         //*********************************************
@@ -209,7 +210,7 @@ public class UtilityRest {
         //*********************************************
         try {
 
-            URL url = new URL(urlIn +"/"+ id);
+            URL url = new URL(urlIn + "/" + id);
             System.out.println(urlIn);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);

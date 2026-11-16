@@ -2,6 +2,7 @@ package ca.hccis.squash.jpa.entity;
 
 import ca.hccis.squash.util.CisUtility;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
@@ -41,9 +42,10 @@ public class SquashMatch {
     @Column(name = "createdDateTime", nullable = false, length = 100)
     private String createdDateTime;
 
-    @Size(min = 1,max = 100)
     @NotNull
     @Column(name = "player1Name", nullable = false, length = 100)
+    @Size(max = 30, message = "Player 1 name must not exceed 100 characters.")
+    @NotBlank(message = "Player 1 name is required.")
     private String player1Name;
 
     @Size(min = 1,max = 100)
