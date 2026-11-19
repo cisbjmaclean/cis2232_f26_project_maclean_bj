@@ -6,6 +6,7 @@ import ca.hccis.squash.jpa.entity.SkillsAssessmentSquashTechnical;
 import ca.hccis.squash.jpa.entity.SquashMatch;
 import ca.hccis.squash.repositories.SkillsAssessmentSquashTechnicalRepository;
 import ca.hccis.squash.repositories.SquashMatchRepository;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 //import jakarta.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Service class for accessing using REST.
@@ -50,6 +52,13 @@ public class SquashMatchService {
     @GetMapping("/{id}")
     public ResponseEntity<SquashMatch> getById(@PathVariable Integer id) {
 
+        Optional<SquashMatch> theMatch = repo.findById(id);
+        Gson gson = new Gson();
+        String matchJson = gson.toJson(theMatch.get());
+        System.out.println();
+        System.out.println(matchJson);
+        System.out.println();
+
         return repo.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.noContent().build());
@@ -71,6 +80,11 @@ public class SquashMatchService {
             @RequestBody SquashMatch obj) {
 
         obj.setWinnerName(SquashMatchBO.determineWinner(obj));
+
+        if(obj.getId() != null && obj.getId().equals(0)){
+            obj.setId(null);
+        }
+
         SquashMatch saved = repo.save(obj);
 
         return ResponseEntity.ok(saved);

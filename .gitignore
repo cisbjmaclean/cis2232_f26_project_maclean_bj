@@ -6,6 +6,8 @@ target/
 target/classes
 .idea/
 
+# secret file
+secret.properties
 
 # Log file
 *.log

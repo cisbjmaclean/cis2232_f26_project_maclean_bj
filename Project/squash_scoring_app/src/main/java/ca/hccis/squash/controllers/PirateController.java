@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ResourceBundle;
 
 /**
  * Controller to administer call to api for pirate translator
@@ -73,15 +74,24 @@ public class PirateController {
             logger.error("Error encoding"+e.getMessage());
         }
         //Assignment 4 - use JSON object to get the translated (contents / translated)
-        String result = CisUtilityNetwork.connectToApi("https://api.funtranslations.com/translate/pirate.json?text="+textToSend);
+
+        String propFileName = "secret";
+        ResourceBundle rb = ResourceBundle.getBundle(propFileName);
+        String key = rb.getString("key_weather_api");
+        System.out.println("BJTEST key="+key);
+
+
+        //todo store in properties
+        final String api = "https://api.weatherapi.com/v1/current.json?q="+textToSend;
+        String result = CisUtilityNetwork.connectToApi(api, key);
         System.out.println("BJM Network:"+result);
 
         JSONObject jsonObject = new JSONObject(result);
-        JSONObject innerJsonObject = jsonObject.getJSONObject("contents");
-        String translated = innerJsonObject.getString("translated");
+        JSONObject innerJsonObject = jsonObject.getJSONObject("current");
+        int currentTemperature = innerJsonObject.getInt("temp_c");
 
         //Put object in model so it can be used on the view (html)
-        translate.setPirate(translated);
+        translate.setPirate(""+currentTemperature);
         model.addAttribute("translate", translate);
         return "pirate/translate";
     }

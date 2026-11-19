@@ -26,7 +26,7 @@ public class CisUtilityNetwork {
      * @since 20241104
      * @author BJM
      */
-    public static String connectToApi(String urlString) {
+    public static String connectToApi(String urlString, String key) {
         try {
             logger.info("Attempting to connect to: ***" + urlString+"***");
 
@@ -34,6 +34,10 @@ public class CisUtilityNetwork {
 
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
+
+            if(key != null) {
+                conn.setRequestProperty("key", key);
+            }
             conn.connect();
 
             //Getting the response code
