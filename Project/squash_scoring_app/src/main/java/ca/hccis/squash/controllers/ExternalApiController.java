@@ -1,6 +1,6 @@
 package ca.hccis.squash.controllers;
 
-import ca.hccis.squash.entity.Translate;
+import ca.hccis.squash.entity.ExternalApiEntity;
 import ca.hccis.squash.util.CisUtilityNetwork;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -17,16 +17,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 /**
- * Controller to administer call to api for pirate translator
+ * Controller to administer call to api for external api call
  *
  * @author BJM
- * @since 20241107
+ * @since 20261120
  */
 @Controller
-@RequestMapping("/pirate")
-public class PirateController {
+@RequestMapping("/weather")
+public class ExternalApiController {
 
-    private static final Logger logger = LoggerFactory.getLogger(PirateController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExternalApiController.class);
 
     /**
      * Send the user to the pirate view
@@ -44,22 +44,22 @@ public class PirateController {
         //String result = CisUtilityNetwork.connectToApi("https://api.funtranslations.com/translate/pirate.json?text=My%20friend");
         //System.out.println("BJM Network:"+result);
 
-        model.addAttribute("translate", new Translate());
+        model.addAttribute("externalApiEntity", new ExternalApiEntity());
 
-        return "/pirate/translate";
+        return "/externalapi/weather";
     }
 
     /**
-     * Process the translation
+     * Process the call
      *
      * @param model
      * @param translate Object containing inputs for the translation
      * @return view to show result
      * @author BJM
-     * @since 2024-10-10
+     * @since 20261120
      */
     @RequestMapping("/submit")
-    public String submitTranslation(Model model, @ModelAttribute("translate") Translate translate) {
+    public String submitExternalApiCall(Model model, @ModelAttribute("translate") ExternalApiEntity externalApiEntity) {
 
         //BJM 20241104 Connect to the network to get some json
 
@@ -67,7 +67,7 @@ public class PirateController {
         String textToSend = "";
         try {
             textToSend = URLEncoder.encode(
-                    translate.getEnglish(),
+                    externalApiEntity.getInput(),
                     StandardCharsets.UTF_8.toString()
             );
         } catch (UnsupportedEncodingException e) {
@@ -88,12 +88,12 @@ public class PirateController {
 
         JSONObject jsonObject = new JSONObject(result);
         JSONObject innerJsonObject = jsonObject.getJSONObject("current");
-        int currentTemperature = innerJsonObject.getInt("temp_c");
+        int textReturned = innerJsonObject.getInt("temp_c");
 
         //Put object in model so it can be used on the view (html)
-        translate.setPirate(""+currentTemperature);
-        model.addAttribute("translate", translate);
-        return "pirate/translate";
+        externalApiEntity.setOutput(""+textReturned);
+        model.addAttribute("externalApiEntity", externalApiEntity);
+        return "externalapi/weather";
     }
 
 }

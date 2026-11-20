@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
-    <title id="pageTitle">Pirate</title>
+    <title id="pageTitle">Weather</title>
 </head>
 <body>
 <style scoped="scoped">input:not(.hidden) {
@@ -20,14 +20,14 @@ label {
 }</style>
 <nav th:replace="fragments/navHeader :: navbar"></nav>
 <div class="container has-text-centered">
-    <h2 class="title is-2">Translate to Pirate</h2>
-    <form th:action="@{/pirate/submit}" method="post" class="wbb"
+    <h2 class="title is-2">Enter postal code or city</h2>
+    <form th:action="@{/weather/submit}" method="post" class="wbb"
           style="display:inline-block;text-align:left!important">
-        <label>English </label>
-        <input type="text" th:field="${translate.english}"></input>
+        <label>Postal Code/City </label>
+        <input type="text" th:field="${externalApiEntity.input}"></input>
         <br></br>
         <button style="display:block;margin-top:24px!important" class="centered">Submit</button>
-        <p th:text="${translate.pirate}"></p>
+        <p th:text="${externalApiEntity.output}"></p>
     </form>
     <br></br>
 </div>
